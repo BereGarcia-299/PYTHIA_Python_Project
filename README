@@ -1,0 +1,53 @@
+
+Project Overview.
+
+The Big Bang is a theory that explains how the universe was created and how it evolved throughout time to reach the state it is in today. Scientists want to understand more about the first microseconds of the universe when matter was very dense and hot. Under these extreme conditions, the fundamental quarks and gluons that are confined by the strong nuclear force in hadrons, become liberated and are free to roam and interact via the strong nuclear force. Scientists recreate this state of matter, known as Quark-Gluon Plasma (QGP), through ultra relativistic collisions of heavy nuclei such as lead (Pb), which take place at the Large Hadron Collider (LHC) at CERN. One of the most fascinating things that we have observed about the QGP is that it is a near-perfect fluid—the lowest viscosity fluid created in any laboratory! We can learn about the many-body behavior of strongly-interacting matter in this ultra high-temperature and high-density regime by observing how the QGP interacts with individual high-energy quarks and gluons. During the nucleus-nucleus collision process, a quark or gluon in each beam can undergo a hard scattering and be kicked out at a large angle and with a large momentum. These quarks or gluons radiate and produce other quarks and gluons as they penetrate through the evolving, cooling QGP plasma, and eventually emerge as collimated sprays of particles called jets. Since the jet formation process occurs over the timescale of the evolving QGP, we can use jets to probe the QGP from the moment it is created to the time it begins to cool and transition back into a gas of ordinary hadrons. In a subset of these processes, the hard scattering produces a high-energy photon to balance a high energy quark. Since the photon does not interact with the QGP, it can be used as an experimental control handle on the jet before any QGP interaction. On the other hand, when the jet penetrates through the QGP, the medium modifies the showering process, resulting in a jet with a significantly different distribution of its constituent particles and correlations between them, a set of observables known as jet sub-structure.
+
+
+We are looking at proton+proton (pp) collissions and Lead+Lead (Pb+Pb) collisions. This will help us studying QGP in a small system and a big system. In each event we are going to look at photons and jets. We will look at eta, pT, phi distributions of photons and jets to make sure that it is the expected distribution. We can model jets as a cone with a specified radius which would tell us exactly how many energy of the jets is grabbed into it and how much energy is lost outside. For this purpose we are looking at jets with radii R = 0.4 and R = 1.0. Jets created in association with a photon of high momentum can be used to study energy loss in QGP. The photon-jet observable called xJGamma tells us about the energy loss. We construct xJGamma for jets with radii R=0.4 and R=1.0 for both pp and Pb+Pb. xJGamma is constructed by taking the ratio of leading jet pT to the photon pT. https://cds.cern.ch/record/2652189/files/ATL-PHYS-PROC-2018-197.pdf
+
+We model heavy-ion collissions using PYTHIA 8.3, a particle collision simulator program at very high energy which uses Monte Carlo algorithm to simulate events. It exists in as C++ version. http://home.thep.lu.se/~torbjorn/Pythia.html. We generate events in heavy-ion collisions at LHC energies using PYTHIA and study the final state particle observables. A major part of our work is to simulate events by writing PYTHIA in python. A basic python interface to PYTHIA exists. http://home.thep.lu.se/~torbjorn/pythia82html/PythonInterface.html. 
+
+We also use PyROOT which is a python interface to ROOT since we are writing the particle data, the output of PYTHIA simulation, into a root file. https://root.cern/manual/python. ROOT is a framework for data processing which is a very standard and commonly used tool in the field of high-energy physics. https://root.cern/
+
+For working with our repository please make sure you have ROOT installed with python bindings and PYTHIA installed.
+
+Installation guidelines for PYTHIA:
+
+grab latest version from here (8.303 as pythia8303.tgz):  http://home.thep.lu.se/Pythia/
+tar -xzvf pythia8303.tgz
+mkdir pythia-install
+cd pythia8303
+./configure --prefix=/home/cfmcginn/Packages/PYTHIA_withPYTHON/pythia-install --with-python-config=python3-config
+make
+make install
+
+Installation guidelines for ROOT with python bindings:
+
+git clone https://github.com/root-project/root.git
+mkdir build
+cd build
+cmake -DPYTHON_EXECUTABLE=/path/to/python_exec ../root
+make -j8
+source bin/thisroot.sh
+
+Test:
+
+As a way to test our simulation algorithm we create a root file with jets coming from gluons and quark. Our code counts the number of jets coming from quarks and gluons and the number of photons in each event. 
+
+Our repository contains the following files/folders with the functions mentioned:
+
+1. README: This file.
+2. maketree_pp.py: Simulates proton-proton collisions at 2.76 TeV and writes events into a root file
+3. maketree_PbPb.py: Simulates Pb+Pb collisions at 2.76 TeV and writes events into a root files. The script is different for Pb+Pb collisions since it is heavy-ion and PYTHIA uses a facility where a model for combining several nucleon-nucleon collisions into one heavy ion collision can be implemented.
+4. xJg.py: Analysis code for the root files. Constructs a quantity xJg (discussed above) to study the energy loses of jets.
+5. plots: Folder that includes the code which construct the plots, plot.py, and all the plots. It has four different folders.
+            1. pp_R1: has plots for R=1.0 jets in pp collisions
+            1. pp_R4: has plots for R=0.4 jets in pp collisions
+            1. PbPb_R1: has plots for R=1.0 jets in PbPb collisions
+            1. PbPb_R4: has plots for R=0.4 jets in PbPb collisions
+6. root_files: Folder with the root files, output of maketree files.
+7. test: Folder contains the test mentioned above.
+
+
+
