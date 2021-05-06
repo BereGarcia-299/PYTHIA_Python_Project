@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # main01.py is a part of the PYTHIA event generator.
 # Copyright (C) 2020 Torbjorn Sjostrand.
 # PYTHIA is licenced under the GNU GPL v2 or later, see COPYING for details.
@@ -9,6 +10,10 @@
 # studies the charged multiplicity distribution at the LHC. To set the
 # path to the Pythia 8 Python interface do either (in a shell prompt):
 #      export PYTHONPATH=$(PREFIX_LIB):$PYTHONPAT
+=======
+#This is where we test our Analysis code
+
+>>>>>>> ac509c7b9c6eca54579df9a02be94556eefbd1a8
 
 import sys
 
