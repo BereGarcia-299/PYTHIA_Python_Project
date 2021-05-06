@@ -8,11 +8,7 @@
 # This is a simple test program. It fits on one slide in a talk.  It
 # studies the charged multiplicity distribution at the LHC. To set the
 # path to the Pythia 8 Python interface do either (in a shell prompt):
-#      export PYTHONPATH=$(PREFIX_LIB):$PYTHONPATH
-# or the following which sets the path from within Python.
-#
-# Use "python-config --include" to find the include directory and
-# then configure Pythia ""--with-python-include=*".
+#      export PYTHONPATH=$(PREFIX_LIB):$PYTHONPAT
 
 import sys
 
